@@ -1,18 +1,18 @@
-from googletrans import Translator
+from google_trans_new import google_translator  
 
 supported_langs={
-        "ingilizce" : "en",
-        "fransızca" : "fr",
-        "almanca" : "de",
-        "ispanyolca" : "es",
-        "arapça" : "ar",
-        "rusça" : "ru"
+        'İngilizce' : "en",
+        'Fransızca' : "fr",
+        'Almanca' : "de",
+        'İspanyolca' : "es",
+        'Arapça' : "ar",
+        'Rusça' : "ru"
 }
 
-translator = Translator()
+translator = google_translator()
 
 def translate(text, target):
     if target in supported_langs.keys():
-        return translator.translate(text, dest=supported_langs[target]).text
+        return translator.translate(text, lang_src='tr', lang_tgt=supported_langs[target])
     else:
         return "Bu dil desteklenmiyor"
