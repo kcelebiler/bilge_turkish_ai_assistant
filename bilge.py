@@ -1,9 +1,6 @@
 import speech_recognition as sr
-import pyaudio
 from gtts import gTTS
 import os
-from io import BytesIO
-import pygame
 from time import sleep
 import pyglet
 import translation
@@ -24,26 +21,29 @@ def assistant_speak(text, lang):
 r = sr.Recognizer()
 
 mic = sr.Microphone(device_index=1)
+
 is_awaken=False
+
 while True:
     
     with mic as source:
-        audio = r.listen(source)
-
-    detected_speech = recognize_speech(audio)
-    if detected_speech.lower() == "hey bilge":
-        assistant_speak("Buyrun benim adım bilge","tr")
-        is_awaken=True
-        break
-        
-if is_awaken:
-    while True:
-        
-        with mic as source:
             audio = r.listen(source)
+    
+    
+    if not is_awaken:
+        detected_speech = recognize_speech(audio)
+        if detected_speech.lower() == "hey bilge" or detected_speech.lower() == "hey biye" or detected_speech.lower() == "hey bg" or detected_speech.lower() == "heybe yenge":
+            assistant_speak("Buyrun benim adım bilge","tr")
+            is_awaken=True
+            
+    elif is_awaken:
         intent = recognize_speech(audio)
         
-        if intent.lower() == "çeviri yapmanı istiyorum":
+        if intent.lower() == "tamam kapat" or intent.lower() == "kapat" or intent.lower() == "sus" or intent.lower() == "sus artık" or  intent.lower() == "vazgeçtim":
+            assistant_speak("Tamam anladım susuyorum","tr")
+            is_awaken = False
+        
+        elif intent.lower() == "çeviri yapmanı istiyorum":
             assistant_speak("Hangi dile çevireyim","tr")
             
             with mic as source:
@@ -60,3 +60,6 @@ if is_awaken:
                 assistant_speak(translated_text,translation.supported_langs[translate_target])
             else:
                 assistant_speak("Bu dil desteklenmiyor","tr")
+
+        
+        
