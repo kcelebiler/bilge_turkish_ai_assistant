@@ -29,10 +29,11 @@ while True:
     with mic as source:
             audio = r.listen(source)
     
-    
+    print(recognize_speech(audio))
     if not is_awaken:
         detected_speech = recognize_speech(audio)
         if detected_speech.lower() == "hey bilge" or detected_speech.lower() == "hey biye" or detected_speech.lower() == "hey bg" or detected_speech.lower() == "heybe yenge":
+            print(detected_speech)
             assistant_speak("Buyrun benim adım bilge","tr")
             is_awaken=True
             
@@ -70,9 +71,9 @@ while True:
             
             temperature, humidity, description = get_weather.get_weather(city)
             
-            translated_description = translation.translate(description, "Türkçe")
+            #translated_description = translation.translate(description, "Türkçe")
             
-            speak_weather = city + " şehrinin havası "+ translated_description +", hava sıcaklığı "+ str(temperature)+ "derece ve nem oranı yüzde "+ str(humidity)
+            speak_weather = city + " şehrinin havası "+ description +", hava sıcaklığı "+ str(temperature)+ "derece ve nem oranı yüzde "+ str(humidity)
             
             assistant_speak(speak_weather,"tr")
             
