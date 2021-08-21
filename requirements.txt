@@ -1,0 +1,5 @@
+SpeechRecognition
+gTTS
+pyglet
+forex_python
+google_trans_new 
