@@ -7,4 +7,4 @@ TODO:
 -   mail atma özelliği eklenecek
 -   kripto para öğrenme eklenecek
 -   question answering eklenecek(nlp bert ya da gpt bakarız)
--   argparser eklenecek(asistan adı değişme, sistem dili değişme gibi)
+-   argparse eklenecek(asistan adı değişme, sistem dili değişme gibi)
