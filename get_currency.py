@@ -8,15 +8,8 @@ currency_abbreviations = {
         "euro": "EUR",
         "japon yeni": "JPY",
         "avustralya doları": "AUD",
-        "isviçre frangı": "CHF",
         "ingiliz sterlini": "GBP",
         "sterlin": "GBP",
-        "ermeni dramı": "AMD",
-        "belçika frangı": "BEF",
-        "azerbaycan manatı": "AZN",
-        "manat": "AZN",
-        "bahreyn dinarı": "BHD",
-        "kuveyt dinarı": "KWD",
         "ruble": "RUB",
         "rus rublesi": "RUB",
         "hint rupisi": "INR",
@@ -28,5 +21,12 @@ currency_abbreviations = {
 c = CurrencyRates()
 
 def get_currency(source='türk lirası', target='dolar'):
+    print(target)
+    print(source)
+    if target in currency_abbreviations.keys():
+        try:
+            return c.get_rate(currency_abbreviations[source], currency_abbreviations[target])
+        except:
+            return "Bir hata meydana geldi. Lütfen tekrar deneyin."
     
-    return c.get_rate(currency_abbreviations[source], currency_abbreviations[target])
+    return "Bu birim desteklenmiyor"
