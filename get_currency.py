@@ -6,11 +6,24 @@ currency_abbreviations = {
         "tl": "TRY",
         "Türk": "TRY",
         "euro": "EUR",
-        "japon yeni": "JPY"
-    
+        "japon yeni": "JPY",
+        "avustralya doları": "AUD",
+        "isviçre frangı": "CHF",
+        "ingiliz sterlini": "GBP",
+        "sterlin": "GBP",
+        "ermeni dramı": "AMD",
+        "belçika frangı": "BEF",
+        "azerbaycan manatı": "AZN",
+        "manat": "AZN",
+        "bahreyn dinarı": "BHD",
+        "kuveyt dinarı": "KWD",
+        "ruble": "RUB",
+        "rus rublesi": "RUB",
+        "hint rupisi": "INR",
+        "kanada doları": "CAD"
+        
     }
 
-#print("türk lirası ve dolar".split(" ve "))
 
 c = CurrencyRates()
 
