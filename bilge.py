@@ -5,6 +5,7 @@ from time import sleep
 import pyglet
 import translation
 import get_weather
+import get_currency
 
 def recognize_speech(audio):
     try:
@@ -35,13 +36,15 @@ while True:
     print(recognize_speech(audio))
     if not is_awaken:
         detected_speech = recognize_speech(audio)
-        if detected_speech.lower() == "hey bilge" or detected_speech.lower() == "hey biye" or detected_speech.lower() == "hey bg" or detected_speech.lower() == "heybe yenge":
+        if detected_speech.lower() == "hey bilge" or detected_speech.lower() == "hey biye" or detected_speech.lower() == "hey bg" or detected_speech.lower() == "heybe yenge" or detected_speech.lower() == "hey bilgi" or detected_speech.lower() == "hey bilye":
             print(detected_speech)
             assistant_speak("Buyrun benim adım bilge","tr")
             is_awaken=True
             
     elif is_awaken:
         intent = recognize_speech(audio)
+        
+        print(intent)
         
         if intent.lower() == "tamam kapat" or intent.lower() == "kapat" or intent.lower() == "sus" or intent.lower() == "sus artık" or  intent.lower() == "vazgeçtim":
             assistant_speak("Tamam anladım susuyorum","tr")
@@ -80,6 +83,20 @@ while True:
             
             assistant_speak(speak_weather,"tr")
             
-
-        
+        elif intent.lower() == "döviz fiyatı öğrenmek istiyorum" or intent.lower() == "döviz fiyatını öğrenmek istiyorum" or intent.lower() == "döviz kuru öğrenmek istiyorum":
+            
+            assistant_speak("Lütfen çevirmek istediğiniz döviz isimlerini söyleyin","tr")
+            
+            # dolar ve euro dediğiniz zaman source olarak doları ve target olarak euroyu alacaktır
+            with mic as source:
+                audio = r.listen(source)
+            exchanges = recognize_speech(audio)
+            
+            source, target = exchanges.split(" ve ")[0].lower(), exchanges.split(" ve ")[1].lower()
+            
+            exchange_rate = round(get_currency.get_currency(source, target),2)
+            
+            speak_exchange = "bir " + source + " " +str(exchange_rate) + " " + target +" etmektedir"
+            
+            assistant_speak(speak_exchange,"tr")
         
