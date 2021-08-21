@@ -6,3 +6,4 @@ TODO:
 -   youtubedan video açma özelliği eklenecek
 -   mail atma özelliği eklenecek
 -   kripto para öğrenme eklenecek
+-   question answering eklenecek(nlp bert ya da gpt bakarız)
