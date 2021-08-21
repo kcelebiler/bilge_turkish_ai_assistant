@@ -4,7 +4,7 @@ import os
 from time import sleep
 import pyglet
 import translation
-
+import get_weather
 
 def recognize_speech(audio):
     return r.recognize_google(audio, language='tr-TR')
@@ -60,6 +60,22 @@ while True:
                 assistant_speak(translated_text,translation.supported_langs[translate_target])
             else:
                 assistant_speak("Bu dil desteklenmiyor","tr")
+        
+        elif intent.lower() == "hava durumunu söyler misin" or intent.lower() == "hava durumunu öğrenmek istiyorum":
+            assistant_speak("Hangi şehrin hava durumunu öğrenmek istiyorsun","tr")
+            
+            with mic as source:
+                audio = r.listen(source)
+            city = recognize_speech(audio)
+            
+            temperature, humidity, description = get_weather.get_weather(city)
+            
+            translated_description = translation.translate(description, "Türkçe")
+            
+            speak_weather = city + " şehrinin havası "+ translated_description +", hava sıcaklığı "+ str(temperature)+ "derece ve nem oranı yüzde "+ str(humidity)
+            
+            assistant_speak(speak_weather,"tr")
+            
 
         
         
