@@ -36,7 +36,7 @@ while True:
     print(recognize_speech(audio))
     if not is_awaken:
         detected_speech = recognize_speech(audio)
-        if detected_speech.lower() == "hey bilge" or detected_speech.lower() == "hey biye" or detected_speech.lower() == "hey bg" or detected_speech.lower() == "heybe yenge" or detected_speech.lower() == "hey bilgi" or detected_speech.lower() == "hey bilye":
+        if detected_speech.lower() == "hey bilge" or detected_speech.lower() == "hey biye" or detected_speech.lower() == "hey binge" or detected_speech.lower() == "hey bg" or detected_speech.lower() == "heybe yenge" or detected_speech.lower() == "hey bilgi" or detected_speech.lower() == "hey bilye":
             print(detected_speech)
             assistant_speak("Buyrun benim adım bilge","tr")
             is_awaken=True
@@ -56,7 +56,7 @@ while True:
             with mic as source:
                 audio = r.listen(source)
             translate_target = recognize_speech(audio)
-            print(translate_target)
+            
             assistant_speak("Çevirmemi istediğiniz cümleyi söyleyin","tr")
             with mic as source:
                 audio = r.listen(source)
@@ -83,7 +83,7 @@ while True:
             
             assistant_speak(speak_weather,"tr")
             
-        elif intent.lower() == "döviz fiyatı öğrenmek istiyorum" or intent.lower() == "döviz fiyatını öğrenmek istiyorum" or intent.lower() == "döviz kuru öğrenmek istiyorum":
+        elif intent.lower() == "döviz fiyatı öğrenmek istiyorum" or intent.lower() == "döviz fiyatını öğrenmek istiyorum" or intent.lower() == "döviz kuru öğrenmek istiyorum" or intent.lower() == "döviz kurunu öğrenmek istiyorum":
             
             assistant_speak("Lütfen çevirmek istediğiniz döviz isimlerini söyleyin","tr")
             
@@ -94,9 +94,22 @@ while True:
             
             source, target = exchanges.split(" ve ")[0].lower(), exchanges.split(" ve ")[1].lower()
             
-            exchange_rate = round(get_currency.get_currency(source, target),2)
+            if get_currency.get_currency(source, target) == "Bu birim desteklenmiyor":
+                
+                assistant_speak("Bu birim desteklenmiyor","tr")
+                
+            elif get_currency.get_currency(source, target) == "Hala para birimlerini almaya çalışıyorum. Lütfen daha sonra tekrar deneyin.":
+                
+                assistant_speak("Hala para birimlerini almaya çalışıyorum. Lütfen daha sonra tekrar deneyin.","tr")
             
-            speak_exchange = "bir " + source + " " +str(exchange_rate) + " " + target +" etmektedir"
-            
-            assistant_speak(speak_exchange,"tr")
+            else:
+                try:
+                    exchange_rate = round(get_currency.get_currency(source, target),2)
+                    
+                    speak_exchange = "bir " + source + " " +str(exchange_rate) + " " + target +" etmektedir"
+                    
+                    assistant_speak(speak_exchange,"tr")
+                except:
+                    
+                    assistant_speak("Bir hata meydana geldi. Lütfen tekrar deneyin","tr")
         
