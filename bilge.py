@@ -7,8 +7,11 @@ import translation
 import get_weather
 
 def recognize_speech(audio):
-    return r.recognize_google(audio, language='tr-TR')
-
+    try:
+        return r.recognize_google(audio, language='tr-TR')
+    except:
+        return ""
+    
 def assistant_speak(text, lang):
     tts = gTTS(text=text, lang = lang)
     filename = 'temp.mp3'
