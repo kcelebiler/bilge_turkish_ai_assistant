@@ -2,4 +2,6 @@ SpeechRecognition
 gTTS
 pyglet
 forex_python
-google_trans_new 
+google_trans_new
+selenium
+webbrowser
