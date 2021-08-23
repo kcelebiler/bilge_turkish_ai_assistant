@@ -3,10 +3,12 @@ from gtts import gTTS
 import os
 from time import sleep
 import pyglet
+
 import translation
 import get_weather
 import get_currency
 import play_video
+import get_cryptocurrency
 
 def recognize_speech(audio):
     try:
@@ -31,18 +33,20 @@ is_awaken=False
 
 while True:
     
-    with mic as source:
-            audio = r.listen(source)
-    
-    print(recognize_speech(audio))
     if not is_awaken:
-        detected_speech = recognize_speech(audio)
-        if detected_speech.lower() == "hey bilge" or detected_speech.lower() == "hey biye" or detected_speech.lower() == "hey bege" or detected_speech.lower() == "hey binge" or detected_speech.lower() == "hey bg" or detected_speech.lower() == "heybe yenge" or detected_speech.lower() == "hey bilgi" or detected_speech.lower() == "hey bilye":
+        with mic as source:
+            audio = r.listen(source)
+            detected_speech = recognize_speech(audio)
             print(detected_speech)
-            assistant_speak("Buyrun benim adım bilge","tr")
-            is_awaken=True
+            if not is_awaken:
+                if "hey bilge" in detected_speech.lower() or "hey biye"  in detected_speech.lower() or "hey bege"  in detected_speech.lower() or "hey binge"  in detected_speech.lower() or "hey bg"  in detected_speech.lower() or "heybe yenge"  in detected_speech.lower() or "hey bilgi"  in detected_speech.lower() or "hey bilye" in detected_speech.lower():
+                    is_awaken = True
+                    assistant_speak("Buyrun benim adım bilge","tr")
             
-    elif is_awaken:
+            
+    if is_awaken:
+        with mic as source:
+            audio = r.listen(source)
         intent = recognize_speech(audio)
         
         print(intent)
@@ -125,3 +129,5 @@ while True:
             assistant_speak("Videoyu açıyorum. Biraz bekleyin.","tr")
             
             play_video.play_video(keyword)
+            
+        
