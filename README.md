@@ -1,3 +1,7 @@
+Akış diyagramı ve kullanılan işlemler:
+
+![1](bilge_ai_assistant.png)
+
 TODO:
 
 -   istenen haber sitelerinden ve istenen kategoriden haber okuma özelliği eklenecek
