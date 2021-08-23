@@ -9,6 +9,7 @@ import get_weather
 import get_currency
 import play_video
 import get_cryptocurrency
+import send_email
 
 def recognize_speech(audio):
     try:
@@ -145,3 +146,43 @@ while True:
             speak_crypto = "bir " + source + " " + str(crypto_price) + " " + target +" etmektedir"
             
             assistant_speak(speak_crypto,"tr")
+            
+        elif intent.lower() == "mail göndermek istiyorum" or intent.lower() == "mail atar mısın" or intent.lower() == "email atar mısın" or intent.lower() == "mail atarmısın" or intent.lower() == "email atarmısın"  or intent.lower() == "mail atmak istiyorum" or intent.lower() == "email atmak istiyorum" or intent.lower() == "email göndermek istiyorum" or intent.lower() == "mail gönderir misin" or intent.lower() == "mail gönderirmisin" or intent.lower() == "email gönderir misin" or intent.lower() == "email gönderirmisin":
+            
+            assistant_speak("Hangi adrese email göndermek istiyorsun","tr")
+            
+            with mic as source:
+                audio = r.listen(source)
+            target = recognize_speech(audio)
+            
+            print(target)
+            
+            target = target.replace(" alt tire ","_")
+            target = target.replace(" et ","@")
+            target = target.lower()
+            target = target.replace("ç","c")
+            target = target.replace("ş","s")
+            target = target.replace("ö","o")
+            target = target.replace("ü","u")
+            target = target.replace("ı","i")
+            target = target.replace(" ","")
+            
+            print(target)
+            
+            assistant_speak("Lütfen mesajınızı söyleyin","tr")
+            
+            with mic as source:
+                audio = r.listen(source)
+            message = recognize_speech(audio)
+            
+            cancelled = False
+            
+            if message.lower() == "iptal et" or message.lower() == "vazgeçtim":
+                assistant_speak("Email gönderme işlemi iptal edildi","tr")
+                cancelled = True
+                
+            elif send_email.send_email(target, message) and not cancelled:
+                assistant_speak("Email başarıyla gönderildi","tr")
+                
+            elif not send_email.send_email(target, message) and not cancelled:
+                assistant_speak("Bir hata meydana geldi. Lütfen tekrar deneyin.","tr")
