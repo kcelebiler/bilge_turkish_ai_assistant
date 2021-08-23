@@ -130,4 +130,18 @@ while True:
             
             play_video.play_video(keyword)
             
-        
+        elif intent.lower() == "kripto fiyatlarını öğrenmek istiyorum" or intent.lower() == "kripto fiyatını öğrenmek istiyorum":
+            
+            assistant_speak("Lütfen istediğiniz kriptoyu ve dövizi söyleyin","tr")
+            
+            with mic as source:
+                audio = r.listen(source)
+            crytocurrencies = recognize_speech(audio)
+            
+            source, target = crytocurrencies.split(" ve ")[0].lower(), crytocurrencies.split(" ve ")[1].lower()
+            
+            crypto_price = get_cryptocurrency.get_cryptocurrency(source, target)
+            
+            speak_crypto = "bir " + source + " " + str(crypto_price) + " " + target +" etmektedir"
+            
+            assistant_speak(speak_crypto,"tr")
