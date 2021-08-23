@@ -6,6 +6,7 @@ import pyglet
 import translation
 import get_weather
 import get_currency
+import play_video
 
 def recognize_speech(audio):
     try:
@@ -36,7 +37,7 @@ while True:
     print(recognize_speech(audio))
     if not is_awaken:
         detected_speech = recognize_speech(audio)
-        if detected_speech.lower() == "hey bilge" or detected_speech.lower() == "hey biye" or detected_speech.lower() == "hey binge" or detected_speech.lower() == "hey bg" or detected_speech.lower() == "heybe yenge" or detected_speech.lower() == "hey bilgi" or detected_speech.lower() == "hey bilye":
+        if detected_speech.lower() == "hey bilge" or detected_speech.lower() == "hey biye" or detected_speech.lower() == "hey bege" or detected_speech.lower() == "hey binge" or detected_speech.lower() == "hey bg" or detected_speech.lower() == "heybe yenge" or detected_speech.lower() == "hey bilgi" or detected_speech.lower() == "hey bilye":
             print(detected_speech)
             assistant_speak("Buyrun benim adım bilge","tr")
             is_awaken=True
@@ -113,3 +114,14 @@ while True:
                     
                     assistant_speak("Bir hata meydana geldi. Lütfen tekrar deneyin","tr")
         
+        elif intent.lower() == "video açmanı istiyorum" or intent.lower() == "video oynatmanı istiyorum" or intent.lower() == "bir video oynatmanı istiyorum" or intent.lower() == "bir video açmanı istiyorum":
+            
+            assistant_speak("Hangi videoyu açayım","tr")
+            
+            with mic as source:
+                audio = r.listen(source)
+            keyword = recognize_speech(audio)
+            
+            assistant_speak("Videoyu açıyorum. Biraz bekleyin.","tr")
+            
+            play_video.play_video(keyword)
