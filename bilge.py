@@ -11,6 +11,7 @@ import play_video
 import get_cryptocurrency
 import send_email
 import get_news
+import get_direction
 
 def recognize_speech(audio):
     try:
@@ -222,4 +223,13 @@ while True:
                     
                     assistant_speak("Bir hata meydana geldi. Lütfen tekrar deneyin","tr")
                     
-                    
+        elif intent.lower() == "bana yön tarifi ver" or intent.lower() == "yön tarifi ver" or intent.lower() == "bana yol tarifi ver" or intent.lower() == "yol tarifi ver" or intent.lower() == "bir yere gitmek istiyorum":
+            
+            assistant_speak("Nereye gitmek istiyorsunuz","tr")
+            
+            with mic as source:
+                audio = r.listen(source)
+            target = recognize_speech(audio)
+            
+            get_direction.get_direction(target)
+            
