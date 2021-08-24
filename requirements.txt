@@ -4,5 +4,4 @@ pyglet
 forex_python
 google_trans_new
 selenium
-webbrowser
 google
