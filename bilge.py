@@ -12,6 +12,7 @@ import get_cryptocurrency
 import send_email
 import get_news
 import get_direction
+import open_movie_tvshow
 
 def recognize_speech(audio):
     try:
@@ -225,7 +226,7 @@ while True:
                     
         elif intent.lower() == "bana yön tarifi ver" or intent.lower() == "yön tarifi ver" or intent.lower() == "bana yol tarifi ver" or intent.lower() == "yol tarifi ver" or intent.lower() == "bir yere gitmek istiyorum":
             
-            assistant_speak("Nereye gitmek istiyorsunuz","tr")
+            assistant_speak("Nereye gitmek istiyorsun","tr")
             
             with mic as source:
                 audio = r.listen(source)
@@ -233,3 +234,15 @@ while True:
             
             get_direction.get_direction(target)
             
+        elif intent.lower() == "bana film aç" or intent.lower() == "bana dizi aç" or intent.lower() == "film aç" or intent.lower() == "dizi aç" or intent.lower() == "bana film açar mısın" or intent.lower() == "bana dizi açar mısın" or intent.lower() == "film açar mısın" or intent.lower() == "dizi açar mısın":
+            
+            if "dizi" in intent.lower():
+                assistant_speak("Hangi diziyi açayım","tr")
+            elif "film" in intent.lower():
+                assistant_speak("Hangi filmi açayım","tr")
+                
+            with mic as source:
+                audio = r.listen(source)
+            name = recognize_speech(audio)
+            
+            open_movie_tvshow.open_movie_tvshow(name)
