@@ -10,6 +10,7 @@ import get_currency
 import play_video
 import get_cryptocurrency
 import send_email
+import get_news
 
 def recognize_speech(audio):
     try:
@@ -155,8 +156,6 @@ while True:
                 audio = r.listen(source)
             target = recognize_speech(audio)
             
-            print(target)
-            
             target = target.replace(" alt tire ","_")
             target = target.replace(" et ","@")
             target = target.lower()
@@ -166,8 +165,6 @@ while True:
             target = target.replace("ü","u")
             target = target.replace("ı","i")
             target = target.replace(" ","")
-            
-            print(target)
             
             assistant_speak("Lütfen mesajınızı söyleyin","tr")
             
@@ -186,3 +183,43 @@ while True:
                 
             elif not send_email.send_email(target, message) and not cancelled:
                 assistant_speak("Bir hata meydana geldi. Lütfen tekrar deneyin.","tr")
+                
+        elif intent.lower() == "haberleri okur musun" or intent.lower() == "haberleri okumanı istiyorum" or intent.lower() == "haberleri oku" or intent.lower() == "haber oku":
+            assistant_speak("Hangi kategoriden haber okumamı istersin","tr")
+            
+            with mic as source:
+                audio = r.listen(source)
+            category = recognize_speech(audio)
+            
+            if category.lower() == "hangi kategoriler var" or category.lower() == "hangi kategoriden okuyabilirsin":
+                assistant_speak("Spor.....Son Dakika....Magazin.....Ekonomi.....Sağlık.....Dünya.....Politika.....Otomobil.....Teknoloji","tr")
+                with mic as source:
+                    audio = r.listen(source)
+                category = recognize_speech(audio)
+                
+            if "spor" in category.lower() or "son dakika" in category.lower() or "magazin" in category.lower() or "ekonomi" in category.lower() or "sağlık" in category.lower() or "dünya" in category.lower() or "politika" in category.lower() or "otomobil" in category.lower() or "teknoloji" in category.lower():
+                
+                try: 
+                    title, detail = get_news.get_news(category.lower())
+                    
+                    assistant_speak(title,"tr")
+                    
+                    assistant_speak("Detayını okumamı ister misin","tr")
+                    
+                    with mic as source:
+                        audio = r.listen(source)
+                    answer = recognize_speech(audio)
+                    
+                    if answer.lower() == "evet":
+                        
+                        assistant_speak(detail,"tr")
+                        
+                    elif answer.lower() == "hayır":
+                        
+                        assistant_speak("Tamam kapatıyorum","tr")
+                        
+                except:
+                    
+                    assistant_speak("Bir hata meydana geldi. Lütfen tekrar deneyin","tr")
+                    
+                    
