@@ -13,6 +13,7 @@ import send_email
 import get_news
 import get_direction
 import open_movie_tvshow
+import make_joke
 
 def recognize_speech(audio):
     try:
@@ -246,3 +247,9 @@ while True:
             name = recognize_speech(audio)
             
             open_movie_tvshow.open_movie_tvshow(name)
+        
+        elif intent.lower() == "bir fıkra anlat" or intent.lower() == "bana bir fıkra anlat" or intent.lower() == "beni güldür":
+            
+            joke = make_joke.make_joke()
+            
+            assistant_speak(joke,"tr")
