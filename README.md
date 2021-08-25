@@ -15,7 +15,7 @@
 - Yön bulma
 - Haber okuma
 - Hava durumunu öğrenme
-- Şaka yapma
+- Fıkra anlatma
 - Film-dizi açma
 - Youtubedan video açma
 - Mail gönderme
