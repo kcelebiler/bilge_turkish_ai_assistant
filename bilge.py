@@ -44,7 +44,7 @@ while True:
             detected_speech = recognize_speech(audio)
             print(detected_speech)
             if not is_awaken:
-                if "hey bilge" in detected_speech.lower() or "hey biye"  in detected_speech.lower() or "hey bege"  in detected_speech.lower() or "hey binge"  in detected_speech.lower() or "hey bg"  in detected_speech.lower() or "heybe yenge"  in detected_speech.lower() or "hey bilgi"  in detected_speech.lower() or "hey bilye" in detected_speech.lower():
+                if "hey bilge" in detected_speech.lower() or "hey bence" in detected_speech.lower() or "hey biye"  in detected_speech.lower() or "hey bege"  in detected_speech.lower() or "hey binge"  in detected_speech.lower() or "hey bg"  in detected_speech.lower() or "heybe yenge"  in detected_speech.lower() or "hey bilgi"  in detected_speech.lower() or "hey bilye" in detected_speech.lower():
                     is_awaken = True
                     assistant_speak("Buyrun benim adım bilge","tr")
             
