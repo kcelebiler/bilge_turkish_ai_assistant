@@ -12,6 +12,6 @@ def make_joke():
     
     random_joke = soup.findAll("p" , class_='imTAJustify')[random.randint(0,len(soup.findAll("p" , class_='imTAJustify'))-1)].text
     
-    random_joke = random_joke.replace("―","\n")
+    random_joke = random_joke.replace("―"," ")
     
     return random_joke
