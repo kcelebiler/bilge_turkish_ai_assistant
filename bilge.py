@@ -16,12 +16,36 @@ import open_movie_tvshow
 import make_joke
 
 def recognize_speech(audio):
+
+    """
+    returns the spoken words, sentences as string
+
+    Args:
+        audio (speech_recognition object): recorded audio that speech_recognition creates
+
+    Returns:
+        string: if there is a recognized speech it returns that, otherwise returns empty
+    """
+
     try:
         return r.recognize_google(audio, language='tr-TR')
     except:
         return ""
     
 def assistant_speak(text, lang):
+
+    """
+    creates an mp3 file using the google service
+    and plays this mp3 file using pyglet library
+
+    Args:
+        text (string): text that assistant will say
+        lang (string): specified language abbreviation e.g. tr, en, fr, de
+
+    Returns: 
+        none
+    """
+
     tts = gTTS(text=text, lang = lang)
     filename = 'temp.mp3'
     tts.save(filename)
@@ -32,7 +56,7 @@ def assistant_speak(text, lang):
 
 r = sr.Recognizer()
 
-mic = sr.Microphone(device_index=1)
+mic = sr.Microphone(device_index=2)
 
 is_awaken = False
 

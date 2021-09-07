@@ -13,6 +13,17 @@ supported_langs={
 translator = google_translator()
 
 def translate(text, target):
+
+    """
+    translates the text using the google translation library
+
+    Args:
+        text (string): text that user wants to translate
+        target (string): target language e.g. en, fr, de, ru
+    Returns:
+        (string) : translated text
+    """
+
     if target in supported_langs.keys():
         if target == "Türkçe":
             return translator.translate(text, lang_src='en', lang_tgt='tr')

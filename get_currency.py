@@ -21,12 +21,24 @@ currency_abbreviations = {
 c = CurrencyRates()
 
 def get_currency(source='türk lirası', target='dolar'):
-    print(target)
-    print(source)
+
+    """
+    gathers the currency rate using the forex python library
+
+    Args:
+        source (string): base currency name
+        target (string): target currency name
+
+    Returns:
+        string: converted currency rate 
+    """
+    
     if target in currency_abbreviations.keys():
         try:
-            return c.get_rate(currency_abbreviations[source], currency_abbreviations[target])
+            return str(c.get_rate(currency_abbreviations[source], currency_abbreviations[target]))
         except:
             return "Bir hata meydana geldi. Lütfen tekrar deneyin."
     
     return "Bu birim desteklenmiyor"
+
+print(type(get_currency()))

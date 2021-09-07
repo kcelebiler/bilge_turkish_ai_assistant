@@ -3,6 +3,16 @@ import requests
 import json
 
 def get_direction(target):
+
+    """
+    opens the webbrowser with the direction to the target from current location
+
+    Args:
+        target (string): target location to go e.g. eiffel tower, times square
+
+    Returns:
+        none
+    """
     
     send_url = "http://api.ipstack.com/check?access_key="
     api = "02f03cbaa372a00cd46218243e5118e5"

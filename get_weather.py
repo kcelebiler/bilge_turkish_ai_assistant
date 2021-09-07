@@ -65,6 +65,17 @@ weather_descriptions = {
 
 def get_weather(CITY):
     
+    """
+    gets weather conditions from the openweathermap api
+
+    Args:
+        city (string): city name
+    Returns:
+        temperature (int): temperature value of that city
+        humidity (int): humidity value of that city
+        weather description (string): weather description of that city
+    """
+
     URL = BASE_URL + "q=" + CITY + METRIC + "&appid=" + API_KEY
     response = requests.get(URL)
     if response.status_code == 200:

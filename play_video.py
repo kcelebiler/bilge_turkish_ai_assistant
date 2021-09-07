@@ -6,6 +6,16 @@ base_url = "https://www.youtube.com/results?search_query="
 
 def play_video(keyword):
     
+    """
+    scrapes the youtube search page using selenium, gets the url of the first video and opens it
+
+    Args:
+        keyword (string): keyword to search on youtube
+    
+    Returns:
+        none
+    """
+
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     options.add_argument('window-size=1920x1080')

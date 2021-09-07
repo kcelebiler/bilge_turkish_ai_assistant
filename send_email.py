@@ -4,6 +4,18 @@ email = "bilgeaiasistan@gmail.com"
 password = "bilgeaiasistan2021"
 
 def send_email(target, message):
+
+    """
+    sends emails using smtplib
+
+    Args:
+        target (string): target email
+        message (string): message that user wants to send
+
+    Returns:
+        boolean value: True if the process is succesful, False otherwise
+    """
+
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.ehlo()

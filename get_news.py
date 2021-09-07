@@ -14,6 +14,17 @@ technology_news_url = "https://www.haberler.com/teknoloji/"
 
 def get_news(category):
     
+    """
+    scrapes the haberler.com website with the specified category and returns the news title and detail as string
+
+    Args: 
+        category (string): category to scrape news e.g. spor, magazin, ekonomi, politika
+
+    Returns:
+        title (string): title of the news page
+        detail (string): first paragraph of the news page
+    """
+
     try: 
         if category == "spor":
             
