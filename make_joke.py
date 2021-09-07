@@ -22,3 +22,9 @@ def make_joke():
     random_joke = random_joke.replace("―"," ")
     
     return random_joke
+
+if __name__ == "__main__":
+
+    random_joke = make_joke()
+
+    print(random_joke)

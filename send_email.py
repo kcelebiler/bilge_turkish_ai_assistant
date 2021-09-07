@@ -22,8 +22,8 @@ def send_email(target, message):
         server.starttls()
         server.ehlo()   
         server.login(email, password)
-        to = [target]
-        subject = 'Bilge Asistan Tarafından Gönderilen Mesaj'
+        to = target
+        subject = 'Bilge Asistan Tarafindan Gonderilen Mesaj'
         fmt = 'From: {}\r\nTo: {}\r\nSubject: {}\r\n{}'
         server.sendmail(email, to, fmt.format(to, email, subject, message).encode('utf-8'))
         server.close()
@@ -32,3 +32,6 @@ def send_email(target, message):
     except:
         return False
     
+if __name__ == "__main__":
+
+    print(send_email("kerim_celebiler@hotmail.com", "test"))

@@ -88,3 +88,9 @@ def get_weather(CITY):
        return int(temperature), humidity, weather_descriptions[description]
     else:
        return "Hata " + str(response.status_code)
+
+if __name__ == "__main__":
+    
+    temperature, humidity, desc = get_weather("istanbul")
+
+    print(str(temperature) + "\n" + str(humidity) + "\n" + desc)

@@ -19,3 +19,7 @@ def open_movie_tvshow(name):
     link = list(search(query, num=1, stop=1))[0]
     
     webbrowser.open(link)
+
+if __name__ == "__main__":
+
+    open_movie_tvshow("sons of anarchy") #best show ever

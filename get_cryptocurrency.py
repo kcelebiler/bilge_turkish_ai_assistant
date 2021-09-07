@@ -9,7 +9,7 @@ def get_cryptocurrency(source, target):
     scrapes the google search page and returns the price text as int
 
     Args:
-        source (string): base cryptocurrency name
+        source (string): base currency name
         target (string): target cryptocurrency name
 
     Returns:
@@ -32,3 +32,8 @@ def get_cryptocurrency(source, target):
     
     return price
     
+if __name__ == "__main__":
+
+    price = get_cryptocurrency("bitcoin", "türk lirası")
+
+    print(str(price))

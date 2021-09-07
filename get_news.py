@@ -221,3 +221,8 @@ def get_news(category):
         
         return "Bir hata meydana geldi. Lütfen tekrar deneyin.", ""
     
+if __name__ == "__main__":
+
+    title, detail = get_news("spor")
+    
+    print(title + "\n" + detail)

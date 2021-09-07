@@ -41,4 +41,8 @@ def get_currency(source='türk lirası', target='dolar'):
     
     return "Bu birim desteklenmiyor"
 
-print(type(get_currency()))
+if __name__ == "__main__":
+
+    price = get_currency("euro", "türk lirası")
+
+    print(price)

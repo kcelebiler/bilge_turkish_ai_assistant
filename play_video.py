@@ -35,3 +35,6 @@ def play_video(keyword):
     
     webbrowser.open(link)
     
+if __name__ == "__main__":
+
+    play_video("judas priest hellrider")

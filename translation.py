@@ -31,3 +31,9 @@ def translate(text, target):
             return translator.translate(text, lang_src='tr', lang_tgt=supported_langs[target])
     else:
         return "Bu dil desteklenmiyor"
+
+if __name__ == "__main__":
+
+    translated_text = translate("merhaba nasılsınız iyi misiniz", "İngilizce")
+
+    print(translated_text)
